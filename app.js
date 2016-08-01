@@ -63,7 +63,11 @@ app.get('/test', function(req, res) {
 
   client.on('close', function() {      
       console.log('closing client and server');
-      binaryServer.close();
+      try {
+        binaryServer.close();
+      } catch () {
+        // nothing to close
+      }    
   })
 
 });
