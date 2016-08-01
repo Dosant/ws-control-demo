@@ -4,7 +4,6 @@ var fs = require('fs');
 var wav = require('wav');
 
 var port = 3700;
-var outFile = 'demo.wav';
 var app = express();
 
 app.set('views', __dirname + '/tpl');
@@ -45,7 +44,8 @@ app.get('/test', function(req, res) {
     
     console.log('new stream started for id: ' + meta.question.id);
     
-    var fileWriter = new wav.FileWriter(meta.question.id + '-' + outFile, {
+    var outputFile = meta.question.id + '-demo.wav';
+    var fileWriter = new wav.FileWriter(outputFile, {
       channels: 1,
       sampleRate: 48000,
       bitDepth: 16
@@ -57,7 +57,7 @@ app.get('/test', function(req, res) {
 
     stream.on('end', function() {
       fileWriter.end();
-      console.log('wrote to file ' + outFile);
+      console.log('wrote to file ' + outputFile);
     });
   });
 
