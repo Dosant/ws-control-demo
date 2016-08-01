@@ -1,0 +1,10 @@
+
+html
+    head
+        title= "Stream to Wav"
+        script(src="https://cdn.jsdelivr.net/binaryjs/0.2.1/binary.min.js")
+    body
+        p#current-question
+        button#start(onclick="startRecording()") Start Recording
+        button#end(onclick="stopRecording()") Stop Recording
+        script(src="recorder.js")
