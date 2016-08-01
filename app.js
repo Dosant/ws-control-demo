@@ -37,7 +37,6 @@ app.get('/test', function(req, res) {
       {id: 3}
     ]
   });
-
   binaryServer.on('connection', function(client) {
   console.log('new connection opened on port: ' + port);
 
@@ -60,8 +59,13 @@ app.get('/test', function(req, res) {
       fileWriter.end();
       console.log('wrote to file ' + outFile);
     });
-
   });
+
+  client.on('close', function() {      
+      console.log('closing client and server');
+      binaryServer.close();
+  })
+
 });
 });
 
